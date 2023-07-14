@@ -15,7 +15,7 @@ export default function GoldenCarrot({ network = "goerli-alpha" }: { network?: s
 
     let [control,setControl]:any = useState(0)
 
-    const contract = ""
+    const contract = "0x06e931246fbae79e0453f780ed58a4cb2ff91f7f1c702705c3c1de41a55d9e72"
 
     const mint = async () => {
 
@@ -23,13 +23,12 @@ export default function GoldenCarrot({ network = "goerli-alpha" }: { network?: s
        
 
         if (wallet.isConnected) {
+            
             if(control===0){
                 window.open(tweetUrl, '_blank');
-            }
-           
-            await setControl(control++)
-            
-            const contractAddress =
+                await setControl(control++)
+            }else{
+                const contractAddress =
                 network === "goerli-alpha"
                     ? contract
                 : network === "dev"
@@ -49,6 +48,7 @@ export default function GoldenCarrot({ network = "goerli-alpha" }: { network?: s
                 wallet.account.address,
                 parseInputAmountToUint256("100")
             );
+            }
         }else{
             alert("Wallet not connected ")
         }
