@@ -101,7 +101,22 @@ export default function Header({theme = "light",walletMode=false}) {
                         <li><a href="/bunny-land">BunnyLand</a></li>
                         <li><a href="/roadmap">Roadmap</a></li>
                         <li className="goldenNav"><a href="/golden-carrot">Golden Carrot</a></li>
-                        <li><a href="#">Connect Wallet</a></li>
+                        <li><a href="" onClick={
+                            async () => {
+                                try {
+                                    const wallet = await connect({
+                                        include: ["braavos","argentX"],/// ,"argentX"
+                                        
+                                    });
+                                    if (wallet) {
+                                        await wallet.enable({ showModal: true });
+                                        setStatus(false)
+                                    }
+                                } catch (err) {
+                                    console.error(err);
+                                }
+                            }
+                         } >Connect Wallet</a></li>
                     </ul>
                 </nav>
             </div>
