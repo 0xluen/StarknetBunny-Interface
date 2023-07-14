@@ -5,6 +5,7 @@ import { Abi, Contract, Signature } from "starknet";
 
 import Erc20Abi from "../ERC20_Mintable_abi.json";
 import { composeUInt256, parseInputAmountToUint256 } from "../utils";
+import { useState } from "react";
 
 export default function GoldenCarrot({ network = "goerli-alpha" }: { network?: string }){
     
@@ -12,6 +13,7 @@ export default function GoldenCarrot({ network = "goerli-alpha" }: { network?: s
 
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(textTweet)}&url=${encodeURIComponent('https://imgur.com/a/dFTupUt')}`;
 
+    let [control,setControl]:any = useState(0)
 
     const contract = ""
 
@@ -21,9 +23,12 @@ export default function GoldenCarrot({ network = "goerli-alpha" }: { network?: s
        
 
         if (wallet.isConnected) {
-
-            window.open(tweetUrl, '_blank');
-
+            if(control===0){
+                window.open(tweetUrl, '_blank');
+            }
+           
+            await setControl(control++)
+            
             const contractAddress =
                 network === "goerli-alpha"
                     ? contract
