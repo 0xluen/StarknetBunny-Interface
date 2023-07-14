@@ -10,8 +10,8 @@ import { useState } from "react";
 export default function GoldenCarrot({ network = "goerli-alpha" }: { network?: string }){
     
     const textTweet = "I have been chosen for @StarknetBunny and we will create an amazing community together. I minted my Golden Carrot, the race has begun, and of course the bunnies will be the winners. LFG!" 
-
-    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(textTweet)}&url=${encodeURIComponent('https://imgur.com/a/dFTupUt')}`;
+    const imageURI = "https://imgur.com/a/dFTupUt"
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(textTweet)}&url=${encodeURIComponent(imageURI)}`;
 
     let [control,setControl]:any = useState(0)
 
